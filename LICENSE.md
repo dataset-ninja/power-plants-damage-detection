@@ -1,0 +1,1 @@
+Replication Data for Remote Damage Detection of Power Plants using Deep Learning based drone image analysis is under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/legalcode) license.
