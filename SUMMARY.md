@@ -2,7 +2,7 @@
 
 The dataset consists of 1136 images with 1136 labeled objects belonging to 1 single class (*damage*).
 
-Each image in the Damage Detection of Power Plants dataset has bounding box annotations. All images are labeled (i.e. with annotations). There are 4 splits in the dataset: *Wind* (431 images), *Solar_small_IR* (67 images), *Solar_small* (516 images), and *Solar_large* (122 images). The dataset was released in 2020.
+Images in the Damage Detection of Power Plants dataset has bounding box annotations. All images are labeled (i.e. with annotations). There are 4 splits in the dataset: *Solar_large* (122 images), *Solar_small* (516 images), *Solar_small_IR* (67 images), and *Wind* (431 images). The dataset was released in 2020.
 
 Here is the visualized example grid with annotations:
 
