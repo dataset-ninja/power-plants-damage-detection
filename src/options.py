@@ -63,10 +63,8 @@ DRAW_STYLE: str = None  # "inside_white" or "outside_black"
 HEATMAP_ROWS: int = None
 HEATMAP_COLS: int = None
 HEATMAP_GRID_SPACING: int = None
-HEATMAP_OUTER_GRID_SPACING: int = None
-HEATMAP_OUTPUT_WIDTH: int = (
-    None  # 1 class in dataset? -> 1600px for portrait images, 2200px for landscape
-)
+HEATMAP_OUTER_GRID_SPACING: int = 10
+HEATMAP_OUTPUT_WIDTH: int = 1600
 ###############################################################
 
 
