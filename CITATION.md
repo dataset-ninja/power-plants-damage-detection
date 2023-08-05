@@ -12,4 +12,4 @@ url = {https://doi.org/10.7910/DVN/GFYPQW}
 }
 ```
 
-[🔗 Source](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GFYPQW)
+[Source](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GFYPQW)

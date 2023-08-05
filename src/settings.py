@@ -26,7 +26,7 @@ APPLICATIONS: List[Union[Industry, Domain, Research]] = [
     Domain.DamageDetection(),
     Research.Engineering(),
 ]
-CATEGORY: Category = Category.EnergyAndUtilities()
+CATEGORY: Category = Category.EnergyAndUtilities(extra=Category.Drones())
 
 CV_TASKS: List[CVTask] = [CVTask.ObjectDetection()]
 ANNOTATION_TYPES: List[AnnotationType] = [CVTask.ObjectDetection()]
@@ -40,7 +40,7 @@ HOMEPAGE_URL: str = (
 )
 # e.g. "https://some.com/dataset/homepage"
 
-PREVIEW_IMAGE_ID: int = 585678
+PREVIEW_IMAGE_ID: int = 1763947
 # This should be filled AFTER uploading images to instance, just ID of any image.
 
 GITHUB_URL: str = "https://github.com/dataset-ninja/power-plants-damage-detection"
@@ -83,7 +83,14 @@ ORGANIZATION_URL: Optional[Union[str, List[str]]] = [
     "https://ulab.edu.bd/",
 ]
 
-SLYTAGSPLIT: Optional[Dict[str, List[str]]] = None
+SLYTAGSPLIT: Optional[Dict[str, List[str]]] = {
+    "image-sets": [
+        "Solar_large",
+        "Solar_small",
+        "Solar_small_IR",
+        "Wind",
+    ]
+}
 TAGS: List[str] = None
 
 ##################################

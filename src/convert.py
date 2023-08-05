@@ -11,13 +11,13 @@ from tqdm import tqdm
 def convert_and_upload_supervisely_project(
     api: sly.Api, workspace_id: int, project_name: str
 ) -> sly.ProjectInfo:
-    dataset_path = "/Users/almaz/Downloads/dataverse_files"
+    dataset_path = "APP_DATA/dataverse_files"
     batch_size = 30
 
     images_ext = ".jpg"
     ann_ext = ".xml"
 
-    def _create_ann(image_path):
+    def _create_ann(image_path, curr_folder):
         labels = []
 
         image_np = sly.imaging.image.read(image_path)[:, :, 0]
@@ -42,25 +42,35 @@ def convert_and_upload_supervisely_project(
             label = sly.Label(rect, obj_class)
             labels.append(label)
 
-        return sly.Annotation(img_size=(img_height, img_wight), labels=labels)
+        tags = [sly.Tag(tag_meta) for tag_meta in tag_metas if tag_meta.name == curr_folder]
+        return sly.Annotation(img_size=(img_height, img_wight), labels=labels, img_tags=tags)
 
     all_data = os.listdir(dataset_path)
 
     obj_class = sly.ObjClass("damage", sly.Rectangle)
-    project = api.project.create(workspace_id, project_name)
-    meta = sly.ProjectMeta(obj_classes=[obj_class])
+    project = api.project.create(workspace_id, project_name, change_name_if_conflict=True)
+
+    tag_names = [
+        "Solar_large",
+        "Solar_small",
+        "Solar_small_IR",
+        "Wind",
+    ]
+    tag_metas = [sly.TagMeta(name, sly.TagValueType.NONE) for name in tag_names]
+
+    meta = sly.ProjectMeta(obj_classes=[obj_class], tag_metas=tag_metas)
     api.project.update_meta(project.id, meta.to_json())
+
+    dataset = api.dataset.create(project.id, "ds")
+
+    progress = tqdm(total=1136, desc="Create dataset")
 
     for curr_folder in all_data:
         curr_data_path = os.path.join(dataset_path, curr_folder)
         if dir_exists(curr_data_path):
-            dataset = api.dataset.create(project.id, curr_folder)
-
             images_names = [
                 item for item in os.listdir(curr_data_path) if get_file_ext(item) == images_ext
             ]
-
-            progress = tqdm(total=len(images_names), desc="Create dataset {}".format(curr_folder))
 
             for images_names_batch in sly.batched(images_names, batch_size=batch_size):
                 img_pathes_batch = [
@@ -70,7 +80,7 @@ def convert_and_upload_supervisely_project(
                 img_infos = api.image.upload_paths(dataset.id, images_names_batch, img_pathes_batch)
                 img_ids = [im_info.id for im_info in img_infos]
 
-                anns = [_create_ann(image_path) for image_path in img_pathes_batch]
+                anns = [_create_ann(image_path, curr_folder) for image_path in img_pathes_batch]
                 api.annotation.upload_anns(img_ids, anns)
 
                 progress.update(len(images_names_batch))
