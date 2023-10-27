@@ -87,10 +87,10 @@ ORGANIZATION_URL: Optional[Union[str, List[str]]] = [
 
 SLYTAGSPLIT: Optional[Dict[str, List[str]]] = {
     "image-sets": [
-        "Solar_large",
-        "Solar_small",
-        "Solar_small_IR",
-        "Wind",
+        "solar_large",
+        "solar_small",
+        "solar_small_IR",
+        "wind",
     ]
 }
 TAGS: List[str] = None
