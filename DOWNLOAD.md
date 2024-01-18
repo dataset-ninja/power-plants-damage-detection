@@ -1,6 +1,6 @@
 Dataset **Damage Detection of Power Plants** can be downloaded in [Supervisely format](https://developer.supervisely.com/api-references/supervisely-annotation-json-format):
 
- [Download](https://www.dropbox.com/scl/fi/0kf2exub1qk02cybuyb8f/damage-detection-of-power-plants-DatasetNinja.tar?rlkey=6hkyxss67p4v4z5ogx55u5hzi&dl=1)
+ [Download](https://assets.supervisely.com/supervisely-supervisely-assets-public/teams_storage/W/I/HF/Ot1xqFGYSYAsyRqXXXYcyYVoSokZrce7fVqPrwgDfAYrzQSsCIx3jnFPjGDVdvOUQr2tQZKESHDm0xZiu6rb2CbWRdhUuCsLolqR3ivU9fmwcrqXyZSCVHbziRk3.tar)
 
 As an alternative, it can be downloaded with *dataset-tools* package:
 ``` bash
